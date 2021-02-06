@@ -25,7 +25,11 @@ const Game = () => {
 
   return (
     <div>
-      <button type="button" onClick={() => dispatch(distributeCards())}>
+      <button
+        type="button"
+        onClick={() => dispatch(distributeCards())}
+        disabled={isPhaseStarted}
+      >
         {isPhaseStarted ? `Compete with ${diceOutcome.label}` : 'Toss dice'}
       </button>
       <h1>Winner: {calculateWinner(scoreOfPlayer, scoreOfComputer)}</h1>
@@ -34,6 +38,7 @@ const Game = () => {
       <Deck
         cards={cardDecks.cardsOfPlayer}
         selectCard={onClickCard(cardDecks, diceOutcome.value)}
+        disableSelect={!isPhaseStarted}
       />
     </div>
   );

@@ -1,7 +1,7 @@
-const Card = ({ card, selectCard }) => {
+const Card = ({ card, selectCard, disable }) => {
   return (
     <div className="card" style={{ width: '18rem' }}>
-      <button onClick={selectCard}>
+      <button onClick={selectCard} disabled={disable}>
         <div className="card-body">
           <h5 className="card-title">{card.name}</h5>
           <p className="card-text">

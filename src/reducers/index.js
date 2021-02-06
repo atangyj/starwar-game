@@ -13,7 +13,10 @@ const reducer = (
   state = {
     isPhaseStarted: false,
     diceOutcome: '',
-    cardDecks: { cardsOfPlayer: [], cardsOfComputer: [] },
+    cardDecks: {
+      cardsOfPlayer: defaultCardDeck,
+      cardsOfComputer: defaultCardDeck,
+    },
     scoreOfPlayer: 100,
     scoreOfComputer: 100,
   },
