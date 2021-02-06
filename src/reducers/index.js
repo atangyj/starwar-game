@@ -6,6 +6,9 @@ import {
   RESET_GAME_PHASE,
 } from 'types';
 
+const cardDeckInterface = {};
+const defaultCardDeck = [0, 0, 0].fill(cardDeckInterface);
+
 const reducer = (
   state = {
     isPhaseStarted: false,
@@ -45,7 +48,15 @@ const reducer = (
     }
 
     case RESET_GAME_PHASE: {
-      return { ...state, isPhaseStarted: false };
+      const defaultPhaseStatus = {
+        isPhaseStarted: false,
+        diceOutcome: '',
+        cardDecks: {
+          cardsOfPlayer: defaultCardDeck,
+          cardsOfComputer: defaultCardDeck,
+        },
+      };
+      return { ...state, ...defaultPhaseStatus };
     }
 
     default: {
