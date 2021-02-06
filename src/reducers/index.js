@@ -1,7 +1,10 @@
 import { SET_DICE_OUTCOME, SET_CARD_DECKS } from 'types';
 
 const reducer = (
-  state = { diceOutcome: '', cardDecks: { player: [], computer: [] } },
+  state = {
+    diceOutcome: '',
+    cardDecks: { cardsOfPlayer: [], cardsOfComputer: [] },
+  },
   action
 ) => {
   switch (action.type) {

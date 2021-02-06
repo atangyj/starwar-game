@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { distributeCards } from 'actionCreators';
 
+import Deck from 'components/Deck';
+
 const Game = () => {
   const dispatch = useDispatch();
 
@@ -13,6 +15,7 @@ const Game = () => {
       <button type="button" onClick={() => dispatch(distributeCards())}>
         Toss Dice
       </button>
+      <Deck cards={cardDecks.cardsOfPlayer} />
     </div>
   );
 };
