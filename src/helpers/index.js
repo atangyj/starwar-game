@@ -15,3 +15,27 @@ export const randomSampleWithoutReplacement = (sampleTimes, data) => {
   }
   return sampledItems;
 };
+
+export const autoSelect = (options) => {
+  return options[0];
+};
+
+export const calculateLostScores = (player, computer, competeWith) => {
+  const calculatePower = (value) => {
+    if (isNaN(value)) {
+      return 0;
+    }
+    return Math.floor(Math.log(parseInt(value)));
+  };
+  const playerAttackPower = calculatePower(player[competeWith]);
+  const computerAttackPower = calculatePower(computer[competeWith]);
+
+  let lostScoreOfPlayer = 0,
+    lostScoreOfComputer = 0;
+  if (playerAttackPower > computerAttackPower) {
+    lostScoreOfComputer = -computerAttackPower;
+  } else if (playerAttackPower < computerAttackPower) {
+    lostScoreOfPlayer = -playerAttackPower;
+  }
+  return [lostScoreOfPlayer, lostScoreOfComputer];
+};
