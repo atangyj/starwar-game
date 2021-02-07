@@ -25,7 +25,7 @@ const Game = () => {
   };
 
   return (
-    <div className="vh-100 d-flex flex-column">
+    <div className="vh-100 d-flex flex-column text-center">
       {/* <h1>Winner: {calculateWinner(scoreOfPlayer, scoreOfComputer)}</h1> */}
 
       <div className="flex-grow-1">

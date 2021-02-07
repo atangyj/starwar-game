@@ -1,10 +1,10 @@
 import Card from 'components/Card';
 
-const Deck = ({ cards, selectCard, disableSelect, title, className }) => {
+const Deck = ({ cards, selectCard, disableSelect, title }) => {
   return (
-    <div className={className || ''}>
+    <div className="mx-auto" style={{ width: '80%' }}>
       <span>{title}</span>
-      <div className="d-flex flex-row justify-content-center">
+      <div className="card-deck">
         {cards.map((card, i) => (
           <Card
             card={card}

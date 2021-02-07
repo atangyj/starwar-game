@@ -1,11 +1,7 @@
 const Dice = ({ diceLabel, handleClickDice, isPhaseStarted }) => {
   return (
-    <button
-      type="button"
-      onClick={() => dispatch(distributeCards())}
-      disabled={isPhaseStarted}
-    >
-      {isPhaseStarted ? `Compete with ${diceOutcome.label}` : 'Toss dice'}
+    <button type="button" onClick={handleClickDice} disabled={isPhaseStarted}>
+      {isPhaseStarted ? `Compete with ${diceLabel}` : 'Toss dice'}
     </button>
   );
 };
