@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useDebugValue } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { distributeCards, selectCard } from 'actionCreators';
 
@@ -33,6 +33,7 @@ const Game = () => {
           title={`Computer : ${scoreOfComputer}`}
           cards={cardDecks.cardsOfComputer}
           selectCard={onClickCard(cardDecks, diceOutcome.value)}
+          invisible
         />
       </div>
 
@@ -49,6 +50,7 @@ const Game = () => {
           title={`Player : ${scoreOfPlayer}`}
           cards={cardDecks.cardsOfPlayer}
           selectCard={onClickCard(cardDecks, diceOutcome.value)}
+          invisible={!isPhaseStarted}
         />
       </div>
     </div>

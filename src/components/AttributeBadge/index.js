@@ -1,6 +1,8 @@
-const AttributeBadge = ({ label, modifier = 'light' }) => (
+import { useDebugValue } from 'react';
+
+const AttributeBadge = ({ label, value, modifier = 'light' }) => (
   <p className={`badge badge-${modifier} align-self-center`}>
-    {label === 'n/a' ? 'data lost in galaxy' : label}
+    {value === 'n/a' ? 'data lost in galaxy' : label + value}
   </p>
 );
 
