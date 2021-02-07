@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { distributeCards, selectCard } from 'actionCreators';
 
 import Deck from 'components/Deck';
+import Dice from 'components/Dice';
 
 const Game = () => {
   const dispatch = useDispatch();
@@ -24,22 +25,34 @@ const Game = () => {
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={() => dispatch(distributeCards())}
-        disabled={isPhaseStarted}
-      >
-        {isPhaseStarted ? `Compete with ${diceOutcome.label}` : 'Toss dice'}
-      </button>
-      <h1>Winner: {calculateWinner(scoreOfPlayer, scoreOfComputer)}</h1>
-      <h2>player: {scoreOfPlayer}</h2>
-      <h2>computer: {scoreOfComputer}</h2>
-      <Deck
-        cards={cardDecks.cardsOfPlayer}
-        selectCard={onClickCard(cardDecks, diceOutcome.value)}
-        disableSelect={!isPhaseStarted}
-      />
+    <div className="vh-100 d-flex flex-column">
+      {/* <h1>Winner: {calculateWinner(scoreOfPlayer, scoreOfComputer)}</h1> */}
+
+      <div className="flex-grow-1">
+        <Deck
+          title={`Player : ${scoreOfPlayer}`}
+          cards={cardDecks.cardsOfPlayer}
+          selectCard={onClickCard(cardDecks, diceOutcome.value)}
+          disableSelect={!isPhaseStarted}
+        />
+      </div>
+
+      <div className="flex-grow-1">
+        <Dice
+          diceLable={diceOutcome.label}
+          isPhaseStarted={isPhaseStarted}
+          handleClickDice={() => dispatch(distributeCards())}
+        />
+      </div>
+
+      <div className="flex-grow-1">
+        <Deck
+          title={`Computer : ${scoreOfComputer}`}
+          cards={cardDecks.cardsOfPlayer}
+          selectCard={onClickCard(cardDecks, diceOutcome.value)}
+          disableSelect={!isPhaseStarted}
+        />
+      </div>
     </div>
   );
 };
