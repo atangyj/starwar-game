@@ -49,3 +49,31 @@ it('distributeCards should dispatch actions', async () => {
   expect(store.getActions()).toEqual(expectedActions);
   expect(api.fetchSWRoleData).toHaveBeenCalled();
 });
+
+it('selectCard should dispatch actions', async () => {
+  // arrange
+  const store = mockStore({});
+  const mockCardDecks = {
+    cardsOfPlayer: [{ power: 100000 }],
+    cardsOfComputer: [{ power: 1000 }],
+  };
+  const mockSelectedCards = {
+    selectedCardOfPlayer: mockCardDecks.cardsOfPlayer[0],
+    selectedCardOfComputer: mockCardDecks.cardsOfComputer[0],
+  };
+  const expectedActions = [
+    { type: types.SET_SELECTED_CARD_SET, cardSet: mockSelectedCards },
+    {
+      type: types.SET_GAME_SCORES,
+      lostScoreOfPlayer: 0,
+      lostScoreOfComputer: -9,
+    },
+    { type: types.RESET_GAME_PHASE },
+  ];
+
+  // action
+  await store.dispatch(actionCreators.selectCard(0, mockCardDecks, 'power'));
+
+  // assert
+  expect(store.getActions()).toEqual(expectedActions);
+});

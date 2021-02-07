@@ -25,7 +25,7 @@ export const calculateLostScores = (player, computer, competeWith) => {
     if (isNaN(value)) {
       return 0;
     }
-    return Math.floor(Math.log(parseInt(value)));
+    return Math.floor(Math.log10(parseInt(value)));
   };
   const playerAttackPower = calculatePower(player[competeWith]);
   const computerAttackPower = calculatePower(computer[competeWith]);
@@ -33,9 +33,9 @@ export const calculateLostScores = (player, computer, competeWith) => {
   let lostScoreOfPlayer = 0,
     lostScoreOfComputer = 0;
   if (playerAttackPower > computerAttackPower) {
-    lostScoreOfComputer = -computerAttackPower;
+    lostScoreOfComputer = -computerAttackPower * 3;
   } else if (playerAttackPower < computerAttackPower) {
-    lostScoreOfPlayer = -playerAttackPower;
+    lostScoreOfPlayer = -playerAttackPower * 3;
   }
   return [lostScoreOfPlayer, lostScoreOfComputer];
 };
