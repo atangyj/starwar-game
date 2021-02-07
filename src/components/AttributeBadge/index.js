@@ -1,7 +1,7 @@
 const AttributeBadge = ({ label, modifier = 'light' }) => (
-  <span className={`badge badge-${modifier}`}>
+  <p className={`badge badge-${modifier} align-self-center`}>
     {label === 'n/a' ? 'data lost in galaxy' : label}
-  </span>
+  </p>
 );
 
 export default AttributeBadge;
