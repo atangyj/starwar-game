@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
-import Card from 'components/Card';
 import CardBack from 'components/Card/CardBack';
+import CardFace from 'components/Card/CardFace';
 import AttributeBadge from 'components/AttributeBadge';
-import cardImage from 'images';
 
 const Deck = ({ cards, selectCard, title, invisible }) => {
   const competeAttr = useSelector((state) => state.diceOutcome.label);
   const isPhaseStarted = useSelector((state) => state.isPhaseStarted);
+  const selectedCardSet = useSelector((state) => state.selectedCardSet);
 
   const renderCardInfo = (card) => {
     switch (competeAttr) {
@@ -41,16 +41,13 @@ const Deck = ({ cards, selectCard, title, invisible }) => {
           return invisible ? (
             <CardBack key={i} />
           ) : (
-            <Card
+            <CardFace
               key={i}
               selectCard={() => selectCard(i)}
               disable={!isPhaseStarted}
-              className="d-flex flex-column justify-content-between"
-            >
-              {renderCardInfo(card)}
-              <h5 className="align-self-center">{card.name}</h5>
-              <img src={cardImage} alt={card.name} style={{ width: '20%' }} />
-            </Card>
+              cardType={competeAttr}
+              card={card}
+            />
           );
         })}
       </div>
