@@ -30,8 +30,8 @@ const Game = () => {
 
       <div className="flex-grow-1">
         <Deck
-          title={`Player : ${scoreOfPlayer}`}
-          cards={cardDecks.cardsOfPlayer}
+          title={`Computer : ${scoreOfComputer}`}
+          cards={cardDecks.cardsOfComputer}
           selectCard={onClickCard(cardDecks, diceOutcome.value)}
         />
       </div>
@@ -46,7 +46,7 @@ const Game = () => {
 
       <div className="flex-grow-1">
         <Deck
-          title={`Computer : ${scoreOfComputer}`}
+          title={`Player : ${scoreOfPlayer}`}
           cards={cardDecks.cardsOfPlayer}
           selectCard={onClickCard(cardDecks, diceOutcome.value)}
         />

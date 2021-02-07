@@ -1,5 +1,7 @@
 import { useSelector } from 'react-redux';
 import Card from 'components/Card';
+import AttributeBadge from 'components/AttributeBadge';
+
 import { render } from '@testing-library/react';
 
 const Deck = ({ cards, selectCard, title }) => {
@@ -11,11 +13,9 @@ const Deck = ({ cards, selectCard, title }) => {
         return (
           <>
             <h5>{card.name}</h5>
-            <ul>
-              <li>{card.height}</li>
-              <li>{card.mass}</li>
-              <li>Polited starships {card.starships.length}</li>
-            </ul>
+            <AttributeBadge label={card.height} />
+            <AttributeBadge label={card.mass} />
+            <AttributeBadge label={card.starships?.length} />
           </>
         );
       }
@@ -24,11 +24,10 @@ const Deck = ({ cards, selectCard, title }) => {
         return (
           <>
             <h5>{card.name}</h5>
-            <ul>
-              <li>{card.crew}</li>
-              <li>{card.passengers}</li>
-              <li>{card.max_atmosphering_speed}</li>
-            </ul>
+            <AttributeBadge label={card.crew} />
+            <AttributeBadge label={card.passengers} />
+            {/* TODO: NAN */}
+            <AttributeBadge label={card.max_atmosphering_speed} />
           </>
         );
       }
@@ -37,11 +36,9 @@ const Deck = ({ cards, selectCard, title }) => {
         return (
           <>
             <h5>{card.name}</h5>
-            <ul>
-              <li>{card.crew}</li>
-              <li>{card.passengers}</li>
-              <li>{card.cargo_capacity}</li>
-            </ul>
+            <AttributeBadge label={card.crew} />
+            <AttributeBadge label={card.passengers} />
+            <AttributeBadge label={card.cargo_capacity} />
           </>
         );
       }
