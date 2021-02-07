@@ -25,8 +25,6 @@ const Game = () => {
     }
   };
 
-  console.log(selectedCardSet);
-
   return (
     <div>
       {/* <h1>Winner: {calculateWinner(scoreOfPlayer, scoreOfComputer)}</h1> */}
