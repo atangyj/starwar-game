@@ -39,7 +39,7 @@ const Deck = ({ cards, selectCard, title, invisible }) => {
       <div className="card-deck">
         {cards.map((card, i) => {
           return invisible ? (
-            <CardBack />
+            <CardBack key={i} />
           ) : (
             <Card
               key={i}

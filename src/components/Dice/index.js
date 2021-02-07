@@ -1,12 +1,18 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import './Dice.css';
 
 const Dice = ({ diceLabel, handleClickDice, isPhaseStarted }) => {
+  const resetDice = () => {
+    handleClickDice();
+    setAnimate(false);
+  };
   const [animate, setAnimate] = useState(false);
   const tossDice = () => {
     setAnimate(true);
-    setTimeout(handleClickDice, 1000);
+    setTimeout(resetDice, 1000);
   };
+
   return (
     <button
       type="button"
