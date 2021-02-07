@@ -33,13 +33,12 @@ const Game = () => {
           title={`Player : ${scoreOfPlayer}`}
           cards={cardDecks.cardsOfPlayer}
           selectCard={onClickCard(cardDecks, diceOutcome.value)}
-          disableSelect={!isPhaseStarted}
         />
       </div>
 
       <div className="flex-grow-1">
         <Dice
-          diceLable={diceOutcome.label}
+          diceLabel={diceOutcome.label}
           isPhaseStarted={isPhaseStarted}
           handleClickDice={() => dispatch(distributeCards())}
         />
@@ -50,7 +49,6 @@ const Game = () => {
           title={`Computer : ${scoreOfComputer}`}
           cards={cardDecks.cardsOfPlayer}
           selectCard={onClickCard(cardDecks, diceOutcome.value)}
-          disableSelect={!isPhaseStarted}
         />
       </div>
     </div>
