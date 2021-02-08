@@ -5,36 +5,51 @@ import {
   SET_GAME_SCORES,
   RESET_GAME_PHASE,
   SET_STAGEG_GAME_RESULT,
+  SET_GAME_STARTED,
+  SET_GAME_ENDED,
+  RESTART_GAME,
 } from 'types';
 
-const cardDeckInterface = {};
-const defaultCardDeck = [0, 0, 0].fill(cardDeckInterface);
-
-const reducer = (
-  state = {
-    isPhaseStarted: false,
-    diceOutcome: { label: '', value: '' },
-    cardDecks: {
-      cardsOfPlayer: defaultCardDeck,
-      cardsOfComputer: defaultCardDeck,
-    },
-    selectedCardSet: {
-      selectedCardOfPlayer: {},
-      selectedCardOfComputer: {},
-    },
-    scoreOfPlayer: 100,
-    scoreOfComputer: 100,
-    isStagedResultSaved: false,
+const defaultCardDeck = [0, 0, 0].fill({});
+const initialState = {
+  isGameStarted: false,
+  isPhaseStarted: false,
+  diceOutcome: { label: '', value: '' },
+  cardDecks: {
+    cardsOfPlayer: defaultCardDeck,
+    cardsOfComputer: defaultCardDeck,
   },
-  action
-) => {
+  selectedCardSet: {
+    selectedCardOfPlayer: {},
+    selectedCardOfComputer: {},
+  },
+  scoreOfPlayer: 100,
+  scoreOfComputer: 100,
+  isStagedResultSaved: false,
+  isGameOver: false,
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_GAME_STARTED: {
+      return { ...state, isGameStarted: true };
+    }
+
+    case SET_GAME_ENDED: {
+      return { ...state, isGameOver: true };
+    }
+
     case SET_DICE_OUTCOME: {
       return {
         ...state,
         diceOutcome: action.diceOutcome,
         isPhaseStarted: true,
       };
+    }
+
+    case RESTART_GAME: {
+      console.log('restart');
+      return { ...state, ...initialState };
     }
 
     case SET_CARD_DECKS: {

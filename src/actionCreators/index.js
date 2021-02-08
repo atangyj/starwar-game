@@ -5,6 +5,9 @@ import {
   SET_GAME_SCORES,
   RESET_GAME_PHASE,
   SET_STAGEG_GAME_RESULT,
+  SET_GAME_STARTED,
+  SET_GAME_ENDED,
+  RESTART_GAME,
 } from 'types';
 import { fetchSWRoleData } from 'api';
 import {
@@ -21,6 +24,20 @@ const DICE = [
 ];
 
 const NUM_OF_CARDS = 3;
+
+export const startGame = () => {
+  return { type: SET_GAME_STARTED };
+};
+
+export const endGame = () => {
+  console.log('here');
+  return { type: SET_GAME_ENDED };
+};
+
+export const restartGame = () => {
+  console.log('here');
+  return { type: RESTART_GAME };
+};
 
 export const setDiceOutcome = (diceOutcome) => {
   return {

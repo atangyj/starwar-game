@@ -38,18 +38,11 @@ export const calculateLostScores = (player, computer, competeWith) => {
     }
     // The range of attribute value is very large so using log2 value
     const result = Math.floor(Math.log2(parseInt(value)));
-    console.log(value, result);
+
     return result;
   };
   const playerAttackPower = calculatePower(player[competeWith]);
   const computerAttackPower = calculatePower(computer[competeWith]);
-  console.log(
-    player,
-    computer,
-    competeWith,
-    playerAttackPower,
-    computerAttackPower
-  );
 
   let lostScoreOfPlayer = 0,
     lostScoreOfComputer = 0;

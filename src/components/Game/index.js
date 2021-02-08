@@ -1,14 +1,25 @@
-import React, { useDebugValue } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { distributeCards, selectCard, resetPhase } from 'actionCreators';
+import {
+  distributeCards,
+  selectCard,
+  resetPhase,
+  startGame,
+  endGame,
+  restartGame,
+} from 'actionCreators';
 
 import Deck from 'components/Deck';
 import Dice from 'components/Dice';
 import Button from 'components/Button';
+import StartView from 'components/StarView';
+import EndView from 'components/EndView';
 
 const Game = () => {
   const dispatch = useDispatch();
 
+  const isGameStarted = useSelector((state) => state.isGameStarted);
+  const isGameOver = useSelector((state) => state.isGameOver);
   const isPhaseStarted = useSelector((state) => state.isPhaseStarted);
   const isStagedResultSaved = useSelector((state) => state.isStagedResultSaved);
   const diceOutcome = useSelector((state) => state.diceOutcome);
@@ -17,28 +28,45 @@ const Game = () => {
   const scoreOfPlayer = useSelector((state) => state.scoreOfPlayer);
   const scoreOfComputer = useSelector((state) => state.scoreOfComputer);
 
-  console.log(cardDecks, selectedCardSet);
-
   const onClickCard = (cardDecks, competeWith) => (i) =>
     dispatch(selectCard(i, cardDecks, competeWith));
 
   const calculateWinner = (scoreOfPlayer, scoreOfComputer) => {
+    let winner = '';
     if (scoreOfPlayer <= 0 || scoreOfComputer <= 0) {
-      let winner = scoreOfPlayer > scoreOfComputer ? 'Player' : 'Computer';
+      winner = scoreOfPlayer > scoreOfComputer ? 'Player' : 'Computer';
       return winner;
     }
+    return winner;
   };
+
+  const [winner, setWinner] = useState('');
+
+  useEffect(() => {
+    const winner = calculateWinner(scoreOfPlayer, scoreOfComputer);
+
+    if (winner !== '') {
+      dispatch(endGame());
+      setWinner(winner);
+    }
+  });
+
+  console.log(isGameOver);
 
   return (
     <div>
-      {/* <h1>Winner: {calculateWinner(scoreOfPlayer, scoreOfComputer)}</h1> */}
-      {/* <div className="text-white bg-dark" style={{ height: '60px' }}>
-        <p style={{ lineHeight: '60px' }}>
-          {selectedCardSet
-            ? `HISTORY ${selectedCardSet.selectedCardOfPlayer.name} vs ${selectedCardSet.selectedCardOfComputer.name}`
-            : 'War between the bright and the dark begins. More power you own, more attack you underwent.'}
-        </p>
-      </div> */}
+      <StartView
+        isOpen={!isGameStarted}
+        onClick={() => {
+          dispatch(startGame());
+        }}
+      />
+      <EndView
+        isOpen={isGameOver}
+        onClick={() => dispatch(restartGame())}
+        winner={winner}
+      />
+
       <div
         className="d-flex flex-column text-center m-4"
         style={{ height: '90vh' }}
