@@ -48,7 +48,6 @@ const reducer = (state = initialState, action) => {
     }
 
     case RESTART_GAME: {
-      console.log('restart');
       return { ...state, ...initialState };
     }
 

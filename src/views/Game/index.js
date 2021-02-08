@@ -51,8 +51,6 @@ const Game = () => {
     }
   });
 
-  console.log(isGameOver);
-
   return (
     <div>
       <StartView
