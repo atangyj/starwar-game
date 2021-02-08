@@ -57,6 +57,9 @@ it('selectCard should dispatch actions', async () => {
     cardsOfPlayer: [{ power: 100000 }],
     cardsOfComputer: [{ power: 1000 }],
   };
+
+  helpers.autoSelect = jest.fn(() => mockCardDecks.cardsOfComputer[0]);
+
   const mockSelectedCards = {
     selectedCardOfPlayer: mockCardDecks.cardsOfPlayer[0],
     selectedCardOfComputer: mockCardDecks.cardsOfComputer[0],
@@ -66,9 +69,9 @@ it('selectCard should dispatch actions', async () => {
     {
       type: types.SET_GAME_SCORES,
       lostScoreOfPlayer: 0,
-      lostScoreOfComputer: -9,
+      lostScoreOfComputer: -27,
     },
-    { type: types.RESET_GAME_PHASE },
+    { type: types.SET_STAGEG_GAME_RESULT },
   ];
 
   // action

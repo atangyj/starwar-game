@@ -41,6 +41,7 @@ export const calculateLostScores = (player, computer, competeWith) => {
 
     return result;
   };
+
   const playerAttackPower = calculatePower(player[competeWith]);
   const computerAttackPower = calculatePower(computer[competeWith]);
 
