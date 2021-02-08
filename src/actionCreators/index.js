@@ -30,12 +30,10 @@ export const startGame = () => {
 };
 
 export const endGame = () => {
-  console.log('here');
   return { type: SET_GAME_ENDED };
 };
 
 export const restartGame = () => {
-  console.log('here');
   return { type: RESTART_GAME };
 };
 

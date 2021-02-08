@@ -12,7 +12,7 @@ import {
 import Deck from 'components/Deck';
 import Dice from 'components/Dice';
 import Button from 'components/Button';
-import StartView from 'components/StarView';
+import StartView from 'views/StarView';
 import EndView from 'components/EndView';
 
 const Game = () => {
