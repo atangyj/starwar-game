@@ -2,7 +2,7 @@ import AttributeBadge from 'components/AttributeBadge';
 import Card from 'components/Card';
 import cardImage from 'images';
 
-const CardFace = ({ cardType, card, selectCard, disable }) => {
+const CardFace = ({ cardType, card, selectCard }) => {
   const renderCardInfo = (card) => {
     switch (cardType) {
       case 'people': {
@@ -32,7 +32,6 @@ const CardFace = ({ cardType, card, selectCard, disable }) => {
   return (
     <Card
       selectCard={selectCard}
-      disable={disable}
       className="d-flex flex-column justify-content-between"
     >
       {renderCardInfo(card)}
