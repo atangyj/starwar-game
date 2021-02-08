@@ -6,7 +6,6 @@ import AttributeBadge from 'components/AttributeBadge';
 const Deck = ({ cards, selectCard, label, invisible }) => {
   const competeAttr = useSelector((state) => state.diceOutcome.label);
   const isPhaseStarted = useSelector((state) => state.isPhaseStarted);
-  const selectedCardSet = useSelector((state) => state.selectedCardSet);
 
   return (
     <div className="d-flex flex-row-reverse justify-content-center">
@@ -20,7 +19,6 @@ const Deck = ({ cards, selectCard, label, invisible }) => {
               <CardFace
                 key={i}
                 selectCard={() => selectCard(i)}
-                disable={!isPhaseStarted}
                 cardType={competeAttr}
                 card={card}
               />

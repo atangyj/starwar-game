@@ -12,7 +12,7 @@ const defaultCardDeck = [0, 0, 0].fill(cardDeckInterface);
 const reducer = (
   state = {
     isPhaseStarted: false,
-    diceOutcome: '',
+    diceOutcome: { label: '', value: '' },
     cardDecks: {
       cardsOfPlayer: defaultCardDeck,
       cardsOfComputer: defaultCardDeck,

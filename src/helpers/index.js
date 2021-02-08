@@ -9,15 +9,16 @@ export const randomSample = (data) => {
 
 export const randomSampleWithoutReplacement = (sampleTimes, data) => {
   const sampledItems = [];
-  while (sampleTimes--) {
+  while (sampleTimes > 0) {
     const randomNum = generateRandomNum(data.length);
     sampledItems.push(data.splice(randomNum, 1)[0]);
+    sampleTimes -= 1;
   }
   return sampledItems;
 };
 
 export const autoSelect = (options) => {
-  return options[0];
+  // options were randomly selected
 };
 
 export const calculateLostScores = (player, computer, competeWith) => {
