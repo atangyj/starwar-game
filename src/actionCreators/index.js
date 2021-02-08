@@ -1,10 +1,10 @@
 import {
-  DISTRIBUTE_CARDS,
   SET_DICE_OUTCOME,
   SET_CARD_DECKS,
   SET_SELECTED_CARD_SET,
   SET_GAME_SCORES,
   RESET_GAME_PHASE,
+  SET_STAGEG_GAME_RESULT,
 } from 'types';
 import { fetchSWRoleData } from 'api';
 import {
@@ -15,7 +15,7 @@ import {
 } from 'helpers';
 
 const DICE = [
-  { label: 'people', value: 'mass' },
+  { label: 'people', value: 'starships' },
   { label: 'starships', value: 'cargo_capacity' },
   { label: 'vehicles', value: 'max_atmosphering_speed' },
 ];
@@ -68,6 +68,12 @@ export const setGameScores = (lostScores) => {
   };
 };
 
+export const setStagedGameResult = () => {
+  return {
+    type: SET_STAGEG_GAME_RESULT,
+  };
+};
+
 export const resetGamePhase = () => {
   return {
     type: RESET_GAME_PHASE,
@@ -91,8 +97,9 @@ export const selectCard = (i, cardDecks, competeWith) => {
     );
     dispatch(setGameScores({ lostScoreOfPlayer, lostScoreOfComputer }));
 
-    // calculate winner
-    // reset phase
-    dispatch(resetGamePhase());
+    // set staged game result
+    dispatch(setStagedGameResult());
   };
 };
+
+export const resetPhase = () => resetGamePhase();

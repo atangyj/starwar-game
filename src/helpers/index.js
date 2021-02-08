@@ -19,17 +19,37 @@ export const randomSampleWithoutReplacement = (sampleTimes, data) => {
 
 export const autoSelect = (options) => {
   // options were randomly selected
+  const randomNum = generateRandomNum(options.length);
+  return options[randomNum];
 };
 
 export const calculateLostScores = (player, computer, competeWith) => {
   const calculatePower = (value) => {
+    if (Array.isArray(value)) {
+      return value.length;
+    }
+
     if (isNaN(value)) {
       return 0;
     }
-    return Math.floor(Math.log10(parseInt(value)));
+
+    if (value === 0) {
+      return value;
+    }
+    // The range of attribute value is very large so using log2 value
+    const result = Math.floor(Math.log2(parseInt(value)));
+    console.log(value, result);
+    return result;
   };
   const playerAttackPower = calculatePower(player[competeWith]);
   const computerAttackPower = calculatePower(computer[competeWith]);
+  console.log(
+    player,
+    computer,
+    competeWith,
+    playerAttackPower,
+    computerAttackPower
+  );
 
   let lostScoreOfPlayer = 0,
     lostScoreOfComputer = 0;

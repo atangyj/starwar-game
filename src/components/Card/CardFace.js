@@ -16,15 +16,17 @@ const CardFace = ({ cardType, card, selectCard }) => {
 
       case 'starships': {
         return (
-          <AttributeBadge
-            label="max speed "
-            value={card.max_atmosphering_speed}
-          />
+          <AttributeBadge label="max speed " value={card.cargo_capacity} />
         );
       }
 
       case 'vehicles': {
-        return <AttributeBadge label="capacity " value={card.cargo_capacity} />;
+        return (
+          <AttributeBadge
+            label="capacity "
+            value={card.max_atmosphering_speed}
+          />
+        );
       }
     }
   };

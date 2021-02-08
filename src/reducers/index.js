@@ -4,6 +4,7 @@ import {
   SET_SELECTED_CARD_SET,
   SET_GAME_SCORES,
   RESET_GAME_PHASE,
+  SET_STAGEG_GAME_RESULT,
 } from 'types';
 
 const cardDeckInterface = {};
@@ -17,8 +18,13 @@ const reducer = (
       cardsOfPlayer: defaultCardDeck,
       cardsOfComputer: defaultCardDeck,
     },
+    selectedCardSet: {
+      selectedCardOfPlayer: {},
+      selectedCardOfComputer: {},
+    },
     scoreOfPlayer: 100,
     scoreOfComputer: 100,
+    isStagedResultSaved: false,
   },
   action
 ) => {
@@ -50,6 +56,13 @@ const reducer = (
       };
     }
 
+    case SET_STAGEG_GAME_RESULT: {
+      return {
+        ...state,
+        isStagedResultSaved: true,
+      };
+    }
+
     case RESET_GAME_PHASE: {
       const defaultPhaseStatus = {
         isPhaseStarted: false,
@@ -58,6 +71,7 @@ const reducer = (
           cardsOfPlayer: defaultCardDeck,
           cardsOfComputer: defaultCardDeck,
         },
+        isStagedResultSaved: false,
       };
       return { ...state, ...defaultPhaseStatus };
     }
